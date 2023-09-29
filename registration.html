@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Registration Form</title>
+  <style>
+    .background {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-image: url("background.jpg");
+      background-position: center;
+      background-repeat: repeat;
+      background-size: contain;
+      filter: blur(6px);
+      z-index: -5;
+    }
+
+    .container {
+      width: 400px;
+      height: 500px;
+      margin-top: 100px;
+      margin-left: 525px;
+      padding: 20px;
+      border: 3px solid rgb(234, 107, 22);
+      border-radius: 30px;
+      position: fixed;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      color: rgb(255, 255, 255);
+      font-size: larger;
+      font-weight: bold;
+
+    }
+
+    label {
+      display: block;
+      margin-left: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 80%;
+      padding: 5px;
+      background-color: #e7e5e5;
+      border: 1px solid #676565;
+      border-radius: 8px;
+      margin-left: 30px;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background"></div>
+  <div class="container">
+    <h2 style="color: #ffffff; margin-left:80px; font-size:30px; font-weight:bolder">Registration Form</h2>
+    <form id="registrationForm" onsubmit="validateForm(event)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <div id="nameError" class="error"></div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <div id="emailError" class="error"></div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <div id="passwordError" class="error"></div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <div id="confirmPasswordError" class="error"></div>
+      </div>
+      <div class="form-group" style="margin-left: 100px; margin-top: 20px; font-size:large">
+        <label>
+          <input type="radio" name="radio" required>Male
+          <input type="radio" name="radio" required>Female
+        </label>
+      </div>
+      <button onclick="window.location.href='welcome.html';" style="color: #ebedee; width:200px;height: 40px; font: bolder; border-radius: 15px; background-color: rgb(234,
+        107, 22); margin-top: 20px; margin-left: 90px; font-weight:bold; font-size: 17px;" type="submit"
+        value="Register">Register</button>
+
+
+    </form>
+  </div>
+
+  <script>function validateForm(event) {
+      event.preventDefault();
+
+      clearErrors();
+
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (name === "") {
+        displayError("nameError", "Name is required");
+      }
+      if (email === "") {
+        displayError("emailError", "Email is required");
+      } else if (!validateEmail(email)) {
+        displayError("emailError", "Invalid email format");
+      }
+      if (password === " " && password < 8) {
+        displayError("passwordError", "Password is required");
+      } else if (password.length < 8) {
+        displayError("passwordError", "Password should be at least 8 characters long");
+      }
+      if (confirmPassword === "" && confirmPassword !== password) {
+        displayError("confirmPasswordError", "Confirm Password is required");
+      } else if (confirmPassword !== password)
+      
+  }
+  </script>
+</body>
+
+</html>
